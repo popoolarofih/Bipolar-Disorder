@@ -11436,7 +11436,9 @@ a.text-dark:hover, a.text-dark:focus {
       <h1 style="font-weight: bolder; font-size: 5rem;">Prediction Result</h1>
         <p id="result" style="color: white; font-weight: bolder; font-size: 2rem;"></p>
         <h2>Values entered for prediction</h2>
+        <p id="result"></p>
         <p id="details"></p>
+        <h2 id="conclusion"></h2>
     </div>
   </section>
 
@@ -11510,7 +11512,8 @@ a.text-dark:hover, a.text-dark:focus {
   <!-- jQery -->
   <script src="js/jquery-3.4.1.min.js"></script>
   <!-- bootstrap js -->
-  <script>// Retrieve the user data from localStorage
+  <script>
+    // Retrieve the user data from localStorage
     const userData = JSON.parse(localStorage.getItem('userData'));
 
     // Display the prediction
@@ -11523,7 +11526,16 @@ a.text-dark:hover, a.text-dark:focus {
         Drug Use Disorders: ${userData.drugUse}%
         Depression: ${userData.depression}%
         Past Disorder: ${userData.disorder}%
-    `;</script>
+    `;
+
+    // Display the conclusion
+    const conclusion = userData.hasBipolarDisorder 
+        ? "Based on the prediction, there is a high likelihood that the person has bipolar disorder."
+        : "Based on the prediction, it is unlikely that the person has bipolar disorder.";
+
+    document.getElementById('conclusion').innerText = conclusion;
+</script>
+
   <script src="js/bootstrap.js"></script>
   <!-- nice select -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>

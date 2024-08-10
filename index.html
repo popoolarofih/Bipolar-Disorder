@@ -11571,7 +11571,7 @@ a.text-dark:hover, a.text-dark:focus {
   </footer>
   <!-- footer section -->
 <script>
-  function generatePrediction() {
+ function generatePrediction() {
     const year = document.getElementById('year').value;
     const anxiety = document.getElementById('anxiety').value;
     const drugUse = document.getElementById('drug_use').value;
@@ -11587,14 +11587,18 @@ a.text-dark:hover, a.text-dark:focus {
     // Generate a random number between 0 and 1
     const prediction = Math.random();
 
-    // Save the prediction and user input in localStorage
+    // Determine if the person has bipolar disorder (for example, prediction > 0.5 indicates bipolar disorder)
+    const hasBipolarDisorder = prediction > 0.5;
+
+    // Save the prediction, user input, and conclusion in localStorage
     const userData = {
         year,
         anxiety,
         drugUse,
         depression,
         disorder,
-        prediction
+        prediction,
+        hasBipolarDisorder
     };
 
     localStorage.setItem('userData', JSON.stringify(userData));
